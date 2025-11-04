@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot RAG</title>
+    
+    <!-- Enlace al archivo CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Panel de Base de Conocimiento -->
+        <div class="knowledge-panel">
+            <div class="panel-header">
+                <h2> Base de Conocimiento</h2>
+                <p>Dominio del chatbot</p>
+            </div>
+            
+            <div class="knowledge-content" id="knowledgeContent">
+                <!-- La base de conocimiento se cargará aquí -->
+            </div>
+            
+            <button class="add-knowledge-btn" onclick="openModal()">
+                 Agregar Conocimiento
+            </button>
+        </div>
+
+        <!-- Panel de Chat -->
+        <div class="chat-panel">
+            <div class="header">
+                <h1> Chatbot Experto de Dominio</h1>
+                <p>Responde SOLO basándose en la base de conocimiento</p>
+                <div class="domain-badge" id="domainBadge">🎯 Sistema RAG Activo</div>
+            </div>
+
+            <div class="api-key-section">
+                <input type="password" id="apiKeyInput" placeholder="Ingresa tu API Key de Google Gemini">
+                <button onclick="saveApiKey()">Guardar API Key</button>
+            </div>
+
+            <div class="chat-container" id="chatContainer">
+                <div class="info-message">
+                     ¡Hola! Este chatbot es un experto exclusivo de su dominio.<br><br>
+                    <strong>Funcionalidad RAG:</strong> Solo responderá usando la base de conocimiento de la biblioteca.<br>
+                    Configura tu API Key y agrega conocimiento en el panel izquierdo para comenzar.
+                </div>
+            </div>
+
+            <div class="input-container">
+                <input type="text" id="userInput" placeholder="Pregunta algo sobre el dominio..." disabled>
+                <button id="sendBtn" onclick="sendMessage()" disabled>Enviar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para agregar conocimiento -->
+    <div class="modal" id="knowledgeModal">
+        <div class="modal-content">
+            <h2>Agregar Nuevo Conocimiento</h2>
+            
+            <label for="knowledgeTitle">Título del Documento *</label>
+            <input type="text" id="knowledgeTitle" placeholder="Ej: Libro: Introducción a Python" required>
+            
+            <label for="knowledgeText">Contenido del Documento *</label>
+            <textarea id="knowledgeText" placeholder="Escribe aquí toda la información del documento...
+
+Ejemplo para biblioteca:
+Título: Nombre del libro
+Autor: Nombre del autor
+ISBN: 978-XXXXXXXXX
+Editorial: Editorial
+Año: 2024
+Categoría: Categoría
+Disponibilidad: X copias disponibles
+Ubicación: Estante X-XX
+Descripción: Descripción detallada del libro
+Temas: Tema 1, Tema 2
+Nivel: Principiante/Intermedio/Avanzado
+Préstamo: X días" required></textarea>
+
+            <div class="modal-buttons">
+                <button class="cancel-btn" onclick="closeModal()">Cancelar</button>
+                <button class="save-btn" onclick="saveKnowledge()">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enlaces a archivos JavaScript -->
+    <script src="./JS/config.js"></script>
+    <script src="./JS/knowledge.js"></script>
+    <script src="./JS/chat.js"></script>
+    <script src="./JS/app.js"></script>
+</body>
+</html>
